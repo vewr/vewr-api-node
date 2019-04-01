@@ -2,9 +2,9 @@
   "name": "vewr-api-node",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dark-swordsman/vewr-api-node/issues"
   },
-  "homepage": "https://github.com/dark-swordsman/vewr-api-node#readme"
+  "homepage": "https://github.com/dark-swordsman/vewr-api-node#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
