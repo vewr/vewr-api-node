@@ -1,0 +1,19 @@
+{
+  "name": "vewr-api-node",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dark-swordsman/vewr-api-node.git"
+  },
+  "author": "Vewr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dark-swordsman/vewr-api-node/issues"
+  },
+  "homepage": "https://github.com/dark-swordsman/vewr-api-node#readme"
+}
