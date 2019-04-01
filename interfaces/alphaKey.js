@@ -3,10 +3,7 @@ var AlphaKey = require('../models/alphaKey');
 class AlphaKeyInterface {
   createAlphaKey() {
     // generate key
-    const newAlphaKey = new AlphaKey({ key: this.generateKey() });
-
-    // return the promise
-    return newAlphaKey.save()
+    return new AlphaKey({ key: this.generateKey() }).save().lean();
   }
 
   findAlphaKeyById(id) {
