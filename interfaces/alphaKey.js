@@ -11,6 +11,10 @@ class AlphaKeyInterface {
     return AlphaKey.findOne({ _id: id }).lean();
   }
 
+  findAlphaKeyByKey(key) {
+    return AlphaKey.findOne({ key }).lean();
+  }
+
   deleteAlphaKeyById(id) {
     return AlphaKey.deleteOne({ _id: id });
   }
