@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var videoSchema = new Schema({
   title: { type: String, required: true, trim: true },
   details: { type: String, select: false },
-  views: { type: Number, required: true, validate : {
+  views: { type: Number, required: true, default: 0, validate : {
     validator: Number.isInteger,
     message: '{VALUE} is not an integer value'
   }},
