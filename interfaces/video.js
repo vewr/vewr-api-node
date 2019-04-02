@@ -2,7 +2,7 @@ var Video = require('../models/video');
 
 class VideoInterface {
   createVideo(data) {
-    return new Video(data).save().lean();
+    return new Video(data).save();
   }
 
   findVideoById(id) {
