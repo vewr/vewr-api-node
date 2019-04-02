@@ -49,7 +49,7 @@ userRoute.put('/:userId', (request, response) => {
   .catch((err) => response.json(err));
 });
 
-userRoute.get('/login', (request, response) => {
+userRoute.post('/login', (request, response) => {
   UserInterface.findUserByUsernameIncludePassword(request.body.username)
   .then((user) => {
     bcrypt.compare(request.body.password, user.password)
