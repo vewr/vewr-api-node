@@ -25,5 +25,6 @@ mongoose
 
 server.use('/alphaKey', routes.alphaKey);
 server.use('/user', routes.user);
+server.use('/video', routes.video);
 
 server.listen(serverPort, () => console.log(`Vewr API is running on: ${serverPort}`));
