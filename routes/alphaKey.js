@@ -19,6 +19,9 @@ alphaKeyRoute.get('/:key', (request, response) => {
   .catch((err) => response.json(ResponseHelper.error(err)));
 });
 
+// NOTE: In the future, we may want to persist alphaKeys and 
+// add a boolean field for "active" that we can set to true or false
+
 alphaKeyRoute.delete('/:key', (request, response) => {
   AlphaKeyInterface.deleteAlphaKeyById(request.params.key)
   .then((alphaKey) => response.json(ResponseHelper.success(alphaKey)))
