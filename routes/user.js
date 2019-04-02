@@ -1,6 +1,7 @@
 var express = require('express');
 var userRoute = express.Router();
 var bcrypt = require('bcrypt');
+var _ = require('lodash');
 var UserInterface = require('../interfaces/user');
 var ResponseHelper = require('../helpers/ResponseHelper');
 
@@ -23,9 +24,16 @@ userRoute.post('/', (request, response) => {
   .then((hash) => {
     request.body.password = hash;
 
-    return UserInterface.createUser(request.body);
+    return UserInterface.createUser(request.body)
   })
-  .then((user) => response.json(ResponseHelper.success(user)))
+  .then((user) => {
+    // strip the excess object off since we can't lean on a save and delete the password field
+    user = user._doc;
+    user.password = null;
+    delete user.password;
+
+    response.json(ResponseHelper.success(user));
+  })
   .catch((err) => response.json(ResponseHelper.error(err)));
 });
 
