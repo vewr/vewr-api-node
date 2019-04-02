@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const routes = require('./routes');
 
 const serverPort = 8090;
 
@@ -21,5 +22,7 @@ mongoose
   .connect(`mongodb://${mongoConfig.ip}:${mongoConfig.port}/${mongoConfig.database}`, { useNewUrlParser: true })
   .then(() => console.log(`connection to test database successful`))
   .catch((err) => console.error(err));
+  
+server.use('/user', routes.user);
 
 server.listen(serverPort, () => console.log(`Vewr API is running on: ${serverPort}`));
