@@ -22,7 +22,8 @@ mongoose
   .connect(`mongodb://${mongoConfig.ip}:${mongoConfig.port}/${mongoConfig.database}`, { useNewUrlParser: true })
   .then(() => console.log(`connection to test database successful`))
   .catch((err) => console.error(err));
-  
+
+server.use('/alphaKey', routes.alphaKey);
 server.use('/user', routes.user);
 
 server.listen(serverPort, () => console.log(`Vewr API is running on: ${serverPort}`));
