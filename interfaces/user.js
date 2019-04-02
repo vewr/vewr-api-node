@@ -9,8 +9,8 @@ class UserInterface {
     return User.findOne({ _id: id }).lean();
   }
 
-  findUserByIdIncludePassword(id) {
-    return User.findOne({ _id: id }).select('+password').lean();
+  findUserByUsernameIncludePassword(username) {
+    return User.findOne({ username }).select('+password').lean();
   }
 
   findUserByUsername(username) {
