@@ -13,8 +13,8 @@ class UserInterface {
     return User.findOne({ _id: id }).select('+password').lean();
   }
 
-  findUserByEmail(email) {
-    return User.findOne({ email }).lean();
+  findUserByUsername(username) {
+    return User.findOne({ username }).lean();
   }
 
   updateUserById(id, data) {
