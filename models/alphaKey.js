@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var alphaKeySchema = new Schema({
-  key: { type: String, required: true, trim: true }
+  key: { type: String, required: true, unique: true, trim: true }
 }, {
   timestamps: true
 });
