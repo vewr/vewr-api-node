@@ -9,7 +9,7 @@ var videoSchema = new Schema({
     message: '{VALUE} is not an integer value'
   }},
   ipfsLinks: [{ type: String, trim: true }],
-  user: [{ type: Schema.Types.ObjectId, ref: 'User', trim: true }],
+  user: { type: Schema.Types.ObjectId, ref: 'User', trim: true },
 }, {
   timestamps: true
 });
