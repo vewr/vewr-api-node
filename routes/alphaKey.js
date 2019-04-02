@@ -3,7 +3,7 @@ var alphaKeyRoute = express.Router();
 var AlphaKeyInterface = require('../interfaces/alphaKey');
 var ResponseHelper = require('../helpers/ResponseHelper');
 
-alphaKeyRoute.post('/', (request, response) => {
+alphaKeyRoute.get('/', (request, response) => {
   AlphaKeyInterface.createAlphaKey()
   .then((alphaKey) => {
     alphaKey = alphaKey._doc; // lean the alphaKey
