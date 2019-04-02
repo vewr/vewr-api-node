@@ -2,7 +2,7 @@ var User = require('../models/user');
 
 class UserInterface {
   createUser(data) {
-    return new User(data).save().lean();
+    return new User(data).save();
   }
 
   findUserById(id) {
