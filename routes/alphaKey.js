@@ -20,7 +20,7 @@ alphaKeyRoute.get('/:key', (request, response) => {
 });
 
 alphaKeyRoute.delete('/:key', (request, response) => {
-  AlphaKeyInterface.findAlphaKeyByKey(request.params.key)
+  AlphaKeyInterface.deleteAlphaKeyById(request.params.key)
   .then((alphaKey) => response.json(ResponseHelper.success(alphaKey)))
   .catch((err) => response.json(ResponseHelper.error(err)));
 });
