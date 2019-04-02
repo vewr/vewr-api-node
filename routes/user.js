@@ -45,8 +45,8 @@ userRoute.get('/:userId', (request, response) => {
 
 userRoute.put('/:userId', (request, response) => {
   UserInterface.updateUserById(request.params.userId, request.body)
-  .then((user) => response.json(user))
-  .catch((err) => response.json(err));
+  .then((user) => response.json(ResponseHelper.success(user)))
+  .catch((err) => response.json(ResponseHelper.error(err)));
 });
 
 userRoute.post('/login', (request, response) => {
@@ -63,7 +63,7 @@ userRoute.post('/login', (request, response) => {
     }
   })
   .then((user) => response.json(ResponseHelper.success(user)))
-  .catch((err) => response.json(err));
+  .catch((err) => response.json(ResponseHelper.error(err)));
 });
 
 module.exports = userRoute;
