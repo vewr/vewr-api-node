@@ -52,15 +52,17 @@ userRoute.put('/:userId', (request, response) => {
 userRoute.post('/login', (request, response) => {
   UserInterface.findUserByUsernameIncludePassword(request.body.username)
   .then((user) => {
-    bcrypt.compare(request.body.password, user.password)
-    .then((isCorrectPassword) => {
-      if (isCorrectPassword) {
-        response.json(ResponseHelper.success(user));
-      } else {
-        response.json(ResponseHelper.error({ message: 'Incorrect Password' }));
-      }
-    });
+    return bcrypt.compare(request.body.password, user.password)
   })
+  .then((isCorrectPassword) => {
+    if (isCorrectPassword) {
+      // re-lookup the user so there's no risk of the password being added
+      return UserInterface.findUserByUsername(request.body.username);
+    } else {
+      response.json(ResponseHelper.error({ message: 'Incorrect Password' }));
+    }
+  })
+  .then((user) => response.json(ResponseHelper.success(user)))
   .catch((err) => response.json(err));
 });
 
