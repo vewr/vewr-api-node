@@ -20,7 +20,7 @@ videoRoute.get('/:id', (request, response) => {
 });
 
 videoRoute.put('/:id', (request, response) => {
-  VideoInterface.updateVideoById(request.params.id)
+  VideoInterface.updateVideoById(request.params.id, request.body)
   .then((video) => response.json(ResponseHelper.success(video)))
   .catch((err) => response.json(ResponseHelper.error(err)));
 });
