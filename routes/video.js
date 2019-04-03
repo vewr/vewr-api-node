@@ -31,4 +31,10 @@ videoRoute.get('/ipfs/:ipfs', (request, response) => {
   .catch((err) => response.json(ResponseHelper.error(err)));
 });
 
+videoRoute.get('/increment/:id', (request, response) => {
+  VideoInterface.updateVideoById(request.params.id, { $inc: { 'views': 1 } })
+  .then((video) => response.json(ResponseHelper.success(video)))
+  .catch((err) => response.json(ResponseHelper.error(err)));
+});
+
 module.exports = videoRoute;
