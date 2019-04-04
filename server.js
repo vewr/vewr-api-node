@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const auth = require('./auth')();
 
 const serverPort = 8095;
 
@@ -23,6 +24,9 @@ var mongoConfig = {
 };
 
 server.use(bodyParser.json());
+// initalize our authentication strategy
+server.use(auth.init());
+
 // enable mongoose promises
 mongoose.Promise = global.Promise;
 

@@ -2,8 +2,9 @@ var express = require('express');
 var alphaKeyRoute = express.Router();
 var AlphaKeyInterface = require('../interfaces/alphaKey');
 var ResponseHelper = require('../helpers/ResponseHelper');
+var auth = require('../auth')();
 
-alphaKeyRoute.get('/', (request, response) => {
+alphaKeyRoute.get('/', auth.authenticate(), (request, response) => {
   AlphaKeyInterface.createAlphaKey()
   .then((alphaKey) => {
     alphaKey = alphaKey._doc; // lean the alphaKey
@@ -22,7 +23,7 @@ alphaKeyRoute.get('/:key', (request, response) => {
 // NOTE: In the future, we may want to persist alphaKeys and 
 // add a boolean field for "active" that we can set to true or false
 
-alphaKeyRoute.delete('/:key', (request, response) => {
+alphaKeyRoute.delete('/:key', auth.authenticate(), (request, response) => {
   AlphaKeyInterface.deleteAlphaKeyById(request.params.key)
   .then((alphaKey) => response.json(ResponseHelper.success(alphaKey)))
   .catch((err) => response.json(ResponseHelper.error(err)));

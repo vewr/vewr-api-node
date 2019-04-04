@@ -2,8 +2,9 @@ var express = require('express');
 var videoRoute = express.Router();
 var VideoInterface = require('../interfaces/video');
 var ResponseHelper = require('../helpers/ResponseHelper');
+var auth = require('../auth')();
 
-videoRoute.post('/', (request, response) => {
+videoRoute.post('/', auth.authenticate(), (request, response) => {
   VideoInterface.createVideo(request.body)
   .then((video) => {
     video = video._doc; // lean the video
@@ -19,7 +20,7 @@ videoRoute.get('/:id', (request, response) => {
   .catch((err) => response.json(ResponseHelper.error(err)));
 });
 
-videoRoute.put('/:id', (request, response) => {
+videoRoute.put('/:id', auth.authenticate(), (request, response) => {
   VideoInterface.updateVideoById(request.params.id, request.body)
   .then((video) => response.json(ResponseHelper.success(video)))
   .catch((err) => response.json(ResponseHelper.error(err)));
