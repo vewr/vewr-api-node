@@ -28,6 +28,7 @@ server.use(bodyParser.json());
 server.use(auth.init());
 
 server.use((req, res, next) => {
+  res.sendStatus(200);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, FETCH, OPTIONS")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
