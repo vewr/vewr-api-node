@@ -26,6 +26,14 @@ module.exports = function() {
 
   passport.use(strat);
 
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+  
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
+
   return {
     init: () => {
       return passport.initialize();
