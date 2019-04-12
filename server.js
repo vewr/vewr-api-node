@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 const auth = require('./auth')();
+const cors = require('cors');
 
 const serverPort = 8095;
 
@@ -26,14 +27,14 @@ var mongoConfig = {
 server.use(bodyParser.json());
 // initalize our authentication strategy
 server.use(auth.init());
-
-server.use((req, res, next) => {
-  res.sendStatus(200);
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, FETCH, OPTIONS")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  next();
-});
+server.use(cors());
+// server.use((req, res, next) => {
+//   res.sendStatus(200);
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, FETCH, OPTIONS")
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//   next();
+// });
 
 // enable mongoose promises
 mongoose.Promise = global.Promise;
