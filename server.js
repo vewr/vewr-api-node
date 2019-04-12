@@ -27,7 +27,7 @@ var mongoConfig = {
 server.use(bodyParser.json());
 // initalize our authentication strategy
 server.use(auth.init());
-server.use(cors());
+// server.use(cors());
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, FETCH, OPTIONS")
